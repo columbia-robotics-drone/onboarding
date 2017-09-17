@@ -1,18 +1,29 @@
 # FROM ubuntu:14.04 
 FROM ros:indigo-ros-base
 MAINTAINER Vinay Mehta
-# install ros tutorials packages
+
+# Sysadmin setup
 ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y \
+    openssh-server iputils-ping net-tools \
+    software-properties-common 
+RUN mkdir /var/run/sshd
+RUN echo 'root:password' | chpasswd
+RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+
+ENV NOTVISIBLE "in users profile"
+RUN echo "export VISIBLE=now" >> /etc/profile
+CMD ["/usr/sbin/sshd", "-D"]
+
+# install ros tutorials packages
 RUN apt-get -y update \ 
     && apt-get install -y \
     ros-indigo-ros-tutorials vim \
-    ros-indigo-common-tutorials software-properties-common \
+    ros-indigo-common-tutorials \
     && rm -rf /var/lib/apt/lists/
 
-RUN apt-get -y update && apt-get install -y software-properties-common
-
 # install PX4 toolchain
-RUN apt-get remove modemmanager
 RUN add-apt-repository ppa:george-edison55/cmake-3.x -y \  
     && apt-get update \
     && apt-get install -y python-argparse git-core wget zip \
@@ -32,8 +43,8 @@ RUN pip install dronekit \
 
 # install MAVProxy
 RUN apt-get update && apt-get install -y \
-    python-dev python-opencv python-wxgtk2.8 \
-    python-pip python-matplotlib python-pygame \
+    python-opencv python-wxgtk2.8 \
+    python-matplotlib python-pygame \
     python-lxml
 RUN pip install MAVProxy
 RUN echo "export PATH=$PATH:$HOME/.local/bin" >> /etc/profile
