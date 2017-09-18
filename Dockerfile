@@ -1,3 +1,11 @@
+##### HOW TO USE
+# Install Docker
+# Make sure you have ~11 GB of space free on your computer
+# Create 'Dockerfile' in a new folder
+# Run the following command in your terminal in the folder with the Dockerfile
+# docker build -t aero_drone .
+# Sit back, and watch Ubuntu install with all the tools you'll need
+
 # FROM ubuntu:14.04 
 FROM ros:indigo-ros-base
 MAINTAINER Vinay Mehta
