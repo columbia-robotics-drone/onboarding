@@ -28,6 +28,6 @@ CMD ["/usr/sbin/sshd", "-D"]
 
 # install MAVProxy
 RUN apt-get update && apt-get install -y \
-    python-opencv python-wxgtk2.8 \
+    python-opencv python-wxgtk3.0 \
     python-matplotlib python-pygame \
     python-lxml
