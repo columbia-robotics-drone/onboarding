@@ -34,10 +34,9 @@ RUN apt-get -y update \
     && rm -rf /var/lib/apt/lists/
 
 # install PX4 toolchain
-RUN add-apt-repository ppa:george-edison55/cmake-3.x -y \  
-    && apt-get update \
+RUN  apt-get update \
     && apt-get install -y python-argparse git-core wget zip \
-    python-empy qtcreator cmake build-essential genromfs
+    python-empy qtcreator build-essential genromfs
 RUN apt-get install -y python-dev \
     && apt-get install -y python-pip \
     && pip install --upgrade numpy \
