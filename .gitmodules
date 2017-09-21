@@ -1,0 +1,3 @@
+[submodule "jMAVSim"]
+	path = jMAVSim
+	url = https://github.com/PX4/jMAVSim.git
