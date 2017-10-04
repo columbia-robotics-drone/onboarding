@@ -1,0 +1,28 @@
+# HOW TO USE
+Install Docker
+* Make sure you have ~5 GB of space free on your computer
+
+Create 'Dockerfile' in a new folder
+
+Run the following command in your terminal in the folder with the Dockerfile
+* docker build -t aero_drone .
+
+Sit back, and watch Ubuntu install with all the tools you'll need
+
+Run with:
+* docker run -i -t aero_drone /bin/bash
+
+
+# ALTERNATIVE INSTALLATION (simpler, good for navigation tools)
+Run following command after installing docker
+* docker pull px4io/px4-dev-ros
+
+
+
+# HOW TO RUN
+* docker run -i -t [image name] /bin/bash
+
+You are now inside the docker container
+
+Exit by running:
+* exit
